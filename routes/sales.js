@@ -31,15 +31,20 @@ router.get('/stats', (req, res) => {
   
   const stats = {};
   let completed = 0;
+  let hasError = false;
   const totalQueries = Object.keys(queries).length;
   
   Object.entries(queries).forEach(([key, query]) => {
     db.all(query, [], (err, rows) => {
+      if (hasError) return; // Skip if we already encountered an error
+      
       if (err) {
-        stats[key] = { error: err.message };
-      } else {
-        stats[key] = rows;
+        hasError = true;
+        res.status(500).json({ error: 'Failed to fetch statistics', details: err.message });
+        return;
       }
+      
+      stats[key] = rows;
       completed++;
       if (completed === totalQueries) {
         res.json(stats);

@@ -132,7 +132,9 @@ function setupFormHandler() {
         
         try {
             let response;
-            if (editingId) {
+            const isEditing = editingId !== null;
+            
+            if (isEditing) {
                 response = await fetch(`${API_BASE}/${editingId}`, {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
@@ -153,7 +155,7 @@ function setupFormHandler() {
                 document.getElementById('cancelEdit').style.display = 'none';
                 loadSales();
                 loadStats();
-                alert(editingId ? 'Sale updated successfully!' : 'Sale added successfully!');
+                alert(isEditing ? 'Sale updated successfully!' : 'Sale added successfully!');
             } else {
                 const error = await response.json();
                 alert('Error: ' + error.error);
