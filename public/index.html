@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Analysis Admin</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sales Analysis Admin Dashboard</h1>
+            <p>Manage and analyze sales data</p>
+        </header>
+
+        <!-- Statistics Section -->
+        <section class="stats-section">
+            <h2>Sales Statistics</h2>
+            <div class="stats-grid" id="statsGrid">
+                <div class="stat-card">
+                    <h3>Total Sales</h3>
+                    <p class="stat-value" id="totalSales">Loading...</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Quantity</h3>
+                    <p class="stat-value" id="totalQuantity">Loading...</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Number of Sales</h3>
+                    <p class="stat-value" id="salesCount">Loading...</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Average Sale</h3>
+                    <p class="stat-value" id="avgSale">Loading...</p>
+                </div>
+            </div>
+
+            <div class="regional-stats">
+                <h3>Sales by Region</h3>
+                <div id="regionStats">Loading...</div>
+            </div>
+
+            <div class="product-stats">
+                <h3>Top Products</h3>
+                <div id="topProducts">Loading...</div>
+            </div>
+        </section>
+
+        <!-- Add New Sale Section -->
+        <section class="form-section">
+            <h2>Add New Sale</h2>
+            <form id="saleForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="productName">Product Name*</label>
+                        <input type="text" id="productName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Quantity*</label>
+                        <input type="number" id="quantity" required min="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price*</label>
+                        <input type="number" id="price" required min="0" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="saleDate">Sale Date*</label>
+                        <input type="date" id="saleDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customerName">Customer Name</label>
+                        <input type="text" id="customerName">
+                    </div>
+                    <div class="form-group">
+                        <label for="region">Region</label>
+                        <select id="region">
+                            <option value="">Select Region</option>
+                            <option value="North">North</option>
+                            <option value="South">South</option>
+                            <option value="East">East</option>
+                            <option value="West">West</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary">Add Sale</button>
+                <button type="button" class="btn-secondary" id="cancelEdit" style="display: none;">Cancel</button>
+            </form>
+        </section>
+
+        <!-- Sales List Section -->
+        <section class="table-section">
+            <h2>All Sales</h2>
+            <div class="table-container">
+                <table id="salesTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                            <th>Date</th>
+                            <th>Customer</th>
+                            <th>Region</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="salesTableBody">
+                        <tr><td colspan="9" class="loading">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
