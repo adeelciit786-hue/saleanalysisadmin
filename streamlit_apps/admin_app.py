@@ -250,9 +250,8 @@ def admin_panel():
                 forecaster = SalesForecaster(st.session_state.historical_data)
                 weekday_averages = forecaster.get_weekday_averages()
                 
-                # forecast_month returns a list, wrap it in dict with 'forecast' key
-                forecast_list = forecaster.forecast_month('JANUARY', st.session_state.target_sales)
-                forecast_data = {'forecast': forecast_list}
+                # forecast_month returns a dict with 'forecast' key and other metadata
+                forecast_data = forecaster.forecast_month('JANUARY', st.session_state.target_sales)
                 
                 viz = SalesVisualizer()
                 
